@@ -16,10 +16,12 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 type Documents = {
     "\n  query GetAllPosts {\n    allPosts {\n      id\n      title\n    }\n  }\n": typeof types.GetAllPostsDocument,
     "\n  mutation CREATE_POST($title: String!, $views: Int!, $user_id: ID!){\n    createPost(title: $title, views: $views, user_id: $user_id){\n      id,\n      title,\n      views,\n      user_id\n    }\n  }\n": typeof types.Create_PostDocument,
+    "\n  mutation DELETE_POST($id: ID!){\n    deletePost(id: $id){\n      id,\n      title,\n      views,\n      user_id\n    }\n  }\n": typeof types.Delete_PostDocument,
 };
 const documents: Documents = {
     "\n  query GetAllPosts {\n    allPosts {\n      id\n      title\n    }\n  }\n": types.GetAllPostsDocument,
     "\n  mutation CREATE_POST($title: String!, $views: Int!, $user_id: ID!){\n    createPost(title: $title, views: $views, user_id: $user_id){\n      id,\n      title,\n      views,\n      user_id\n    }\n  }\n": types.Create_PostDocument,
+    "\n  mutation DELETE_POST($id: ID!){\n    deletePost(id: $id){\n      id,\n      title,\n      views,\n      user_id\n    }\n  }\n": types.Delete_PostDocument,
 };
 
 /**
@@ -44,6 +46,10 @@ export function gql(source: "\n  query GetAllPosts {\n    allPosts {\n      id\n
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "\n  mutation CREATE_POST($title: String!, $views: Int!, $user_id: ID!){\n    createPost(title: $title, views: $views, user_id: $user_id){\n      id,\n      title,\n      views,\n      user_id\n    }\n  }\n"): (typeof documents)["\n  mutation CREATE_POST($title: String!, $views: Int!, $user_id: ID!){\n    createPost(title: $title, views: $views, user_id: $user_id){\n      id,\n      title,\n      views,\n      user_id\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  mutation DELETE_POST($id: ID!){\n    deletePost(id: $id){\n      id,\n      title,\n      views,\n      user_id\n    }\n  }\n"): (typeof documents)["\n  mutation DELETE_POST($id: ID!){\n    deletePost(id: $id){\n      id,\n      title,\n      views,\n      user_id\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

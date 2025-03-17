@@ -19,3 +19,14 @@ export const CREATE_POST = gql(`
     }
   }
 `);
+
+export const DELETE_POST = gql(`
+  mutation DELETE_POST($id: ID!){
+    deletePost(id: $id){
+      id,
+      title,
+      views,
+      user_id
+    }
+  }
+`);
